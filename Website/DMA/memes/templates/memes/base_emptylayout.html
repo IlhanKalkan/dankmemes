@@ -1,0 +1,19 @@
+{% extends 'memes/base.html' %}
+
+{% block layout %}
+    
+    <div class="row">
+        <!-- left area -->
+        <div class="col s0 m0 l3"></div>
+
+        <!-- center area -->
+        <div class="col s12 m12 l6">
+            {% block content %}
+            {% endblock content %}
+        </div>
+        
+        <!-- right area -->
+        <div class="col s0 m0 l3"></div>
+    </div>
+
+{% endblock layout %}

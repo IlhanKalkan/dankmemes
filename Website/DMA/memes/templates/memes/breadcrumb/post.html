@@ -1,0 +1,12 @@
+{% load emoji_tags %}
+
+<a href='/posts/{{ post.id }}'>
+    <h4 class="center-align colorblack">{{ post.title|emoji_replace|emoji_replace_unicode }}</h4>
+    <div style="center-align">
+            <img src='{{ post.image.url }}' class='imgmeme'>
+    </div>
+</a>
+<div class="text-align-right">
+    <p class="italic twelvepx inline">posted by: </p>
+    <a class="italic b twelvepx inline colorblue postcreator" href="/u/{{post.creator.id}}">{{ post.creator }}</a>
+</div>

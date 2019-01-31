@@ -1,0 +1,326 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css");
+
+*{
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.imgmeme{
+    width: 100%;
+}
+
+.layout{
+    padding-top: 60px;
+}
+
+.page-bar{
+    width: 100%;
+    background-color: black;
+    height: 60px;
+    display: inline-block;
+    vertical-align: middle;
+    position: fixed;
+    padding-left: 8vw;
+    padding-right: 8vw;
+}
+
+.page-bar-img{
+    margin-top: 10px;
+    height: 40px;
+    display: absolute;
+}
+
+.text-align-center{
+    text-align: center;
+}
+
+.text-align-right{
+    text-align: right;
+}
+
+.headernavdiv{
+    text-align: center;
+    margin-top: 12px;
+}
+
+.headernavbutton{
+    display: block;
+    position: absolute;
+}
+
+.fixedpos{
+    position: fixed;
+}
+
+.fullvhheight{
+    height: 100vh;
+}
+
+.bottom{
+    bottom: 0px !important;
+}
+
+.right{
+    right: 0px !important;
+}
+
+.left{
+    left: 0px !important;
+}
+
+.border-right{
+    border-right: 1px solid #eee;
+}
+
+.border-left{
+    border-left: 1px solid #eee;
+}
+
+@media screen and (max-width: 1008px) {
+    .showwhenlarge {
+        display: none;
+    }
+}
+
+.hidden{
+    display: none;
+}
+
+.aboutsdiv{
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.abouts{
+    color: #bbb;
+    margin-left: .5vw;
+    margin-right: .5vw;
+}
+
+.abouts:hover{
+    color: #888;
+    transition-duration: .2s;
+}
+
+.sidebarnavref{
+    color: #bbb;
+    display: block;
+    margin-top: .5vh;
+    margin-bottom: 1vh;
+}
+
+.sidebarnavref:hover{
+    color: #888;
+    transition-duration: .2s;
+}
+
+.about a{
+    text-decoration: underline;
+    letter-spacing: 0px;
+}
+
+.about p{
+    letter-spacing: 1.5px;
+}
+
+.about h5{
+    margin-top: 10vh;
+}
+
+.about h6{
+    margin-top: 3vh;
+}
+
+.about ul{
+    letter-spacing: 1.5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.about ol{
+    letter-spacing: 1.5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.about li{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.b{
+    font-weight: bold;
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+.row{
+    margin-bottom: 0px !important;
+}
+
+h4 .emoji{
+    height: 35px;
+    width: 35px;
+    margin-bottom: -5px;
+}
+
+.comment .emoji{
+    height: 15px;
+    width: 15px;
+    margin-bottom: -2px;
+}
+
+.reply .emoji{
+    height: 12px;
+    width: 12px;
+    margin-bottom: -2px;
+}
+
+.comment p{
+    margin: 0px;
+    padding: 0px;
+    line-height: 1rem;
+}
+
+.reply p{
+    margin: 0px;
+    padding: 0px;
+    line-height: .5rem;
+    font-size: 12px;
+}
+
+.replybtn{
+    color: #365899;
+    font-size: 12px;
+    margin-left: 25px;
+    border: none;
+    background-color: white;
+}
+
+.replybtn:hover{
+    text-decoration: underline;
+}
+
+.replycontainer{
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin: 5px;
+    display: inline-block;
+    min-width: 55%;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.replyform{
+    margin: 0px 20px;
+    padding: 0px 8px;
+}
+
+.block{
+    display: block;
+}
+
+.moreleftmargin{
+    margin-left: 20px;
+}
+
+@media screen and (max-width: 1008px) {
+    h4{
+        font-size: 20px;
+        word-wrap: break-word;
+    }
+    
+    h4 .emoji{
+        height: 20px;
+        width: 20px;
+        margin-bottom: -3px;
+    }
+
+    .comment .emoji{
+        height: 10px;
+        width: 10px;
+        margin-bottom: -1px;
+    }
+
+    .reply .emoji{
+        height: 8px;
+        width: 8px;
+        margin-bottom: -1px;
+    }
+
+    p{
+        font-size: 10px;
+    }
+
+    .reply p{
+        font-size: 10px;
+    }
+
+    .reply a{
+        font-size: 10px;
+    }
+
+    
+    .replycontainer{
+        padding: 1px 10px;
+    }
+}
+
+.alert-danger{
+    color: red;
+}
+
+.post{
+    margin: 5px 0 5px 0;
+    padding: 0.1px 2vw 12px 2vw;
+}
+
+.nomargin{
+    margin: 0px;
+}
+
+.nopadding{
+    padding: 0px;
+}
+
+.profilecardtitle{
+    margin: 0 0 1rem 0
+}
+
+.front{
+    z-index: 1;
+}
+
+.inline{
+    display: inline;
+}
+
+.childinline p{
+    display: inline;
+}
+
+.italic{
+    font-style: italic;
+}
+
+.twelvepx{
+    font-size: 12px;
+}
+
+.eightpx{
+    font-size: 8px;
+}
+
+.gray{
+    color: gray;
+}
+
+.colorblue{
+    color: #365899;
+}
+
+.colorblack{
+    color: black;
+}

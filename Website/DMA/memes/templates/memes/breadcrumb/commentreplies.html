@@ -1,0 +1,34 @@
+{% load emoji_tags %}
+
+<ul>
+    <li class="replycontainer blue lighten-5">
+        <div class="comment childinline">
+            <a class="italic b twelvepx inline colorblue" 
+                        href="/u/{{comment.creator.id}}">{{ comment.creator }}:</a>
+            {{ comment.text|emoji_replace|emoji_replace_unicode|linebreaks }}
+            <div class="text-align-right inline">
+                <p class="date inline eightpx gray">{{ comment.pub_date }}</p>
+            </div>
+        </div>
+    </li>
+
+    <!-- replies -->
+    <ul>
+        {% for reply in replies %}
+            <li class="replycontainer moreleftmargin grey lighten-4">
+                <div class="reply childinline">
+                    <a class="italic b twelvepx inline colorblue" 
+                            href="/u/{{reply.creator.id}}">{{ reply.creator }}:</a>
+                    {{ reply.text|emoji_replace|emoji_replace_unicode|linebreaks }} 
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <div id="jsonUpdateReply{{comment.id}}"></div>
+
+    <!-- replyform -->
+    {% if user.is_authenticated %}
+        {% include 'memes/breadcrumb/replyform.html' with id=comment.id %}
+    {% endif %}
+</ul>

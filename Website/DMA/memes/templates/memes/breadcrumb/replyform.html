@@ -1,0 +1,14 @@
+<form method='POST' action='' enctype='multipart/form-data' id="{{ id }}" class="hidden replyform reply-form">{% csrf_token %}
+    <p class="nomargin nopadding">
+        <input placeholder="reacc.." 
+            type="text" 
+            name="text" 
+            maxlength="500"
+            required id="{{ id }}">
+        <input type="hidden" name="comment_id" value="{{ id }}">
+    </p>
+</form>
+
+<a class="replybtn block" href="#" 
+    onclick="$(':focus').css({display:'none'});$('#{{ id }}').css({display: 'block'});$('input[id={{id}}]').focus();return false;">
+    Reacc...</a>

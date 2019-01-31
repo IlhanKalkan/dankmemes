@@ -1,0 +1,32 @@
+{% extends 'memes/base_layout.html' %}
+
+{% block title %}
+{{ user_scoped }}
+{% endblock %}
+
+{% block content %}
+
+    <h3>{{ user_scoped }}'s posts</h3>
+
+    {% if user_post_list %}
+        <ul>
+        
+        {% load emoji_tags %}
+
+        {% for post in user_post_list %}
+            <li>    
+                    <div class="card-panel white">
+                            <h4 class="center-align profilecardtitle">{{ post.title|emoji_replace|emoji_replace_unicode }}</h4>
+                            <div class="center-align">
+                                <img src='{{ post.image.url }}' class='imgmeme'>
+                            </div>
+                    </div>
+            </li>
+        {% endfor %}
+        
+        </ul>
+    {% else %}
+        <p>User hasn't submitted any posts.</p>
+    {% endif %}
+    
+{% endblock %}

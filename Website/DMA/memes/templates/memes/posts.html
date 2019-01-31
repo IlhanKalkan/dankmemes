@@ -1,0 +1,36 @@
+{% extends 'memes/base_layout.html' %}
+
+{% block title %}
+Homepage - Dank Memes Army
+{% endblock %}
+
+{% block content %}
+
+    {% if post_comments %}
+        <ul class="postslist">
+        
+            {% for post, commentreplies in post_comments.items %}
+                <!-- base post -->
+                <li class="post card-panel white">
+                    {% include 'memes/breadcrumb/post.html' with post=post %}
+
+                    {% for comment, replies in commentreplies.items %}
+                    <!-- comment -->
+                        {% include 'memes/breadcrumb/commentreplies.html' with comment=comment replies=replies %}
+                    {% endfor %}
+
+                    <div id="jsonUpdateComment{{post.id}}"></div>
+                
+                    <!-- commenting -->
+                    {% if user.is_authenticated %}
+                        {% include 'memes/breadcrumb/commentform.html' with id=post.id %}
+                    {% endif %}
+                </li>
+            {% endfor %}
+
+        </ul>
+    {% else %}
+        <p>No posts are available.</p>
+    {% endif %}
+    
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'memes/base_layout.html' %}
+
+{% block title %}
+{{ post.title }} - Dank Memes Army
+{% endblock %}
+
+{% block content %}
+
+    {% if post %}
+        <!-- base post -->
+        {% include 'memes/breadcrumb/post.html' with post=post %}
+
+        {% for comment, replies in comment_replies.items %}
+        <!-- comment -->
+            {% include 'memes/breadcrumb/commentreplies.html' with comment=comment replies=replies %}
+        {% endfor %}
+
+        <div id="jsonUpdateComment{{post.id}}"></div>
+    
+        <!-- commenting -->
+        {% if user.is_authenticated %}
+            {% include 'memes/breadcrumb/commentform.html' with id=post.id %}
+        {% endif %}
+    {% endif %}
+    
+{% endblock %}
