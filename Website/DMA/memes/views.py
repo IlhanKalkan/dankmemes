@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 import json
 
 from .models import Post, Comment, Reply
@@ -13,7 +14,7 @@ from .forms import PostForm, CommentForm, ReplyForm
 
 def index(request):
     # posts
-    latest_post_list = Post.objects.order_by('-pub_date')[:10]
+    latest_post_list = Post.objects.order_by('-pub_date') #[:10]
 
     # comments implementation with lists
     post_comments = {}
@@ -24,9 +25,22 @@ def index(request):
         post_comments[post] = comment_replies
     
     print(post_comments)
+    # convert to tuple so we can paginate
+    post_comments = tuple(post_comments.items())
+    # pagination
+    paginator = Paginator(post_comments, 3)
 
+    # debugging
+    # print("paginator: \n")
+    # print(paginator.page(1).object_list)
+
+    #if 'page' in request.GET:
+    #    page = request.GET.get('page')
+    #else:
+    #    page = 1
+    
     context = {
-        'post_comments': post_comments,
+        'post_comments': paginator.page(1).object_list,
     }
     return render(request, 'memes/posts.html', context)
 

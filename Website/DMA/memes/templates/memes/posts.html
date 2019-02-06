@@ -9,21 +9,21 @@ Homepage - Dank Memes Army
     {% if post_comments %}
         <ul class="postslist">
         
-            {% for post, commentreplies in post_comments.items %}
+            {% for item in post_comments %}
                 <!-- base post -->
                 <li class="post card-panel white">
-                    {% include 'memes/breadcrumb/post.html' with post=post %}
+                    {% include 'memes/breadcrumb/post.html' with post=item.0 %}
 
-                    {% for comment, replies in commentreplies.items %}
+                    {% for comment, replies in item.1.items %}
                     <!-- comment -->
                         {% include 'memes/breadcrumb/commentreplies.html' with comment=comment replies=replies %}
                     {% endfor %}
 
-                    <div id="jsonUpdateComment{{post.id}}"></div>
-                
+                    <div id="jsonUpdateComment{{item.0.id}}"></div>
+
                     <!-- commenting -->
                     {% if user.is_authenticated %}
-                        {% include 'memes/breadcrumb/commentform.html' with id=post.id %}
+                        {% include 'memes/breadcrumb/commentform.html' with id=item.0.id %}
                     {% endif %}
                 </li>
             {% endfor %}
