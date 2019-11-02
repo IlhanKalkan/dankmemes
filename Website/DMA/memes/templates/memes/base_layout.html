@@ -21,9 +21,8 @@
         <!-- right area -->
         <div class="col l3 text-align-center fixedpos fullvhheight showwhenlarge right border-left">
             {% if user.is_authenticated %}
-                <h3>{{user.username}}</h3>
-                <a class="sidebarnavref" href="/profile">profile</a>
-                <a class="sidebarnavref">dankness</a>
+                <a href="/profile" class="colorblack"><h3>{{user.username}}</h3></a>
+                <!--<a class="sidebarnavref" href="/profile">profile</a>-->
                 <a href="/accounts/logout" class="waves-effect red darken-2 btn">LOG OUT</a>
                 {% block home_authed %}
                 {% endblock home_authed %}
