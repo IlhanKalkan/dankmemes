@@ -59,11 +59,3 @@ class ReactionType(models.Model):
 
     def __str__(self):
         return '%s' % (self.name)
-
-#class Reaction(models.Model):
-#    reactiontype= models.ForeignKey(ReactionType,
-#                                on_delete=models.CASCADE)
-#    creator     = models.ForeignKey(get_user_model(),
-#                                on_delete=models.CASCADE)
-#    post        = models.ForeignKey(Post,
-#                                on_delete=models.CASCADE)

@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import json
 
 from .models import Post, Comment, Reply
@@ -30,19 +30,18 @@ def index(request):
     # pagination
     paginator = Paginator(post_comments, 3)
 
-    # debugging
-    # print("paginator: \n")
-    # print(paginator.page(1).object_list)
-
-    #if 'page' in request.GET:
-    #    page = request.GET.get('page')
-    #else:
-    #    page = 1
+    page = request.GET.get('page', 1)
+    try:
+        content = paginator.page(page)
+    except PageNotAnInteger:
+        content = paginator.page(1)
+    except EmptyPage:
+        content = paginator.page(paginator.num_pages)
     
     context = {
-        'post_comments': paginator.page(1).object_list,
+        'post_comments': content, #paginator.page(1).object_list,
     }
-    return render(request, 'memes/posts.html', context)
+    return render(request, 'memes/index.html', context)
 
 # when visiting user's own profile
 @login_required(login_url='/accounts/login')
@@ -53,7 +52,7 @@ def selfprofile(request):
         "user_self": instance,
         "user_post_list": user_post_list,
     }
-    return render(request, "memes/profile.html", context)
+    return render(request, "memes/profile_self.html", context)
 
 # when visiting other user profiles
 def profile(request, id=None):
@@ -63,10 +62,10 @@ def profile(request, id=None):
         "user_scoped": instance,
         "user_post_list": user_post_list,
     }
-    return render(request, "memes/userprofile.html", context)
+    return render(request, "memes/profile.html", context)
 
 @login_required(login_url='/accounts/login')
-def post_create(request):
+def upload(request):
         
     form = PostForm(request.POST or None, request.FILES or None)
     if form.is_valid():
@@ -79,7 +78,7 @@ def post_create(request):
     context = {
         "form": form,
     }
-    return render(request, "memes/post_create.html", context)
+    return render(request, "memes/upload.html", context)
 
 def post_detail(request, id=None):
     # get post
@@ -105,7 +104,7 @@ def post_delete(request, id=None):
     instance = request.user
     if post.creator.id == instance.id:
         post.delete()
-        return HttpResponseRedirect("/profile.html")
+        return HttpResponseRedirect("/profile_self.html")
 
     else:
         # error page here
@@ -163,7 +162,7 @@ def reply_create(request):
             response_data['pub_date']   = "Just now"
             response_data['creator']    = reply.creator
             response_data['creatorId']  = reply.creator.id
-            response_data['comment']       = reply.comment
+            response_data['comment']    = reply.comment
             
             return HttpResponse(
                 json.dumps(response_data, default=str),

@@ -1,0 +1,44 @@
+{% extends 'memes/base_layout.html' %}
+{% load static %}
+
+{% block title %}
+{{ user_self }}
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'memes/js/postDelete.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="text-align-center">
+        <h3>{{ user_self }}'s posts</h3>
+    </div>
+
+    {% if user_post_list %}
+        <ul>
+        
+        {% load emoji_tags %}
+
+        {% for post in user_post_list %}
+            <li>    
+                    <div class="card-panel white">
+                        <!-- delete button -->
+                        <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+                            <a id="{{post.id}}" class="waves-effect waves-light btn-small red accent-4 right postdeletebtn">
+                                <i class="material-icons">delete</i></a> <!--href="/post_delete/{{ post.id }}-->
+                        </form>
+                        <!-- actual post -->
+                        <h4 class="center-align profilecardtitle">{{ post.title|emoji_replace|emoji_replace_unicode }}</h4>
+                        <div class="center-align">
+                            <img src='{{ post.image.url }}' class='imgmeme'>
+                        </div>
+                    </div>
+            </li>
+        {% endfor %}
+        
+        </ul>
+    {% else %}
+        <p>User hasn't submitted any posts.</p>
+    {% endif %}
+    
+{% endblock %}

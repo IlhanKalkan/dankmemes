@@ -1,18 +1,12 @@
 {% extends 'memes/base_layout.html' %}
-{% load static %}
 
 {% block title %}
-{{ user_self }}
-{% endblock %}
-
-{% block script %}
-<script src="{% static 'memes/js/postDelete.js' %}"></script>
+{{ user_scoped }}
 {% endblock %}
 
 {% block content %}
-    <div class="text-align-center">
-        <h3>{{ user_self }}'s posts</h3>
-    </div>
+
+    <h3>{{ user_scoped }}'s posts</h3>
 
     {% if user_post_list %}
         <ul>
@@ -22,16 +16,10 @@
         {% for post in user_post_list %}
             <li>    
                     <div class="card-panel white">
-                        <!-- delete button -->
-                        <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
-                            <a id="{{post.id}}" class="waves-effect waves-light btn-small red accent-4 right postdeletebtn">
-                                <i class="material-icons">delete</i></a> <!--href="/post_delete/{{ post.id }}-->
-                        </form>
-                        <!-- actual post -->
-                        <h4 class="center-align profilecardtitle">{{ post.title|emoji_replace|emoji_replace_unicode }}</h4>
-                        <div class="center-align">
-                            <img src='{{ post.image.url }}' class='imgmeme'>
-                        </div>
+                            <h4 class="center-align profilecardtitle">{{ post.title|emoji_replace|emoji_replace_unicode }}</h4>
+                            <div class="center-align">
+                                <img src='{{ post.image.url }}' class='imgmeme'>
+                            </div>
                     </div>
             </li>
         {% endfor %}
